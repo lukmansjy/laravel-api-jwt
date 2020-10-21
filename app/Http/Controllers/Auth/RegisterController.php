@@ -22,7 +22,7 @@ class RegisterController extends Controller
             'name' => request('name'),
             'username' => request('username'),
             'email' => request('email'),
-            'password' => request('password')
+            'password' => bcrypt(request('password'))
         ]);
 
         $response = ['message' => 'success'];
