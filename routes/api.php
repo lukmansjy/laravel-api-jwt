@@ -26,8 +26,9 @@ Route::post('logout', LogoutController::class);
 Route::get('user', UserController::class);
 
 Route::middleware('auth:api')->group(function(){
-    Route::post('article/create', [ArticleController::class, 'store']);
+    Route::post('article', [ArticleController::class, 'store']);
+    Route::patch('article/{article}', [ArticleController::class, 'update']);
 });
 
-Route::get('article/{article}', [ArticleController::class, 'show']);
+Route::get('article/{article:slug}', [ArticleController::class, 'show']);
 Route::get('articles', [ArticleController::class, 'index']);
