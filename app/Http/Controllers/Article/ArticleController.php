@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticleCollection;
+use App\Http\Resources\ArticleResource;
+use App\Models\Article\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,7 +18,13 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::paginate(2);
+
+        $articles->transform(function (Article $article) {
+            return (new ArticleResource($article));
+        });
+        return new ArticleCollection($articles);
+        // return ArticleResource::collection($articles); // Tanpa tambah status
     }
 
     /**
@@ -48,9 +57,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        // return $article;
+        return new ArticleResource($article);
     }
 
     /**

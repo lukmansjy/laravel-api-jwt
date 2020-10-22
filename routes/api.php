@@ -25,5 +25,9 @@ Route::post('logout', LogoutController::class);
 
 Route::get('user', UserController::class);
 
-Route::post('article/create', [ArticleController::class, 'store']);
+Route::middleware('auth:api')->group(function(){
+    Route::post('article/create', [ArticleController::class, 'store']);
+});
 
+Route::get('article/{article}', [ArticleController::class, 'show']);
+Route::get('articles', [ArticleController::class, 'index']);
