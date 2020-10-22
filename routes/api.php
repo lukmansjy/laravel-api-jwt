@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -23,4 +24,6 @@ Route::post('login', LoginController::class);
 Route::post('logout', LogoutController::class);
 
 Route::get('user', UserController::class);
+
+Route::post('article/create', [ArticleController::class, 'store']);
 

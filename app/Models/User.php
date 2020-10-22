@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Article\Article;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,5 +52,9 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function articles(){
+        return $this->hasMany(Article::class);
     }
 }
