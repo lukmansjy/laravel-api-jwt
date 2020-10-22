@@ -28,6 +28,7 @@ Route::get('user', UserController::class);
 Route::middleware('auth:api')->group(function(){
     Route::post('article', [ArticleController::class, 'store']);
     Route::patch('article/{article}', [ArticleController::class, 'update']);
+    Route::delete('article/{article}', [ArticleController::class, 'destroy']);
 });
 
 Route::get('article/{article:slug}', [ArticleController::class, 'show']);
